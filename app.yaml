@@ -1,0 +1,2 @@
+service: test
+runtime: nodejs10
