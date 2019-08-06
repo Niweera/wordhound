@@ -3,3 +3,7 @@ dispatch:
     service: test
   - url: "wordhunter.niweera.gq/*"
     service: default
+  - url: "dict.niweera.gq/*"
+    service: googledict
+  - url: "wh.niweera.gq/*"
+    service: wh-api
