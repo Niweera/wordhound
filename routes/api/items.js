@@ -54,9 +54,9 @@ router.get("/:word", (req, res) => {
     .then(item => {
       if (!item) {
         res.status(404).json({ error: "Cannot define the given word" });
+      } else {
+        res.json(item);
       }
-
-      res.json(item);
     })
     .catch(err => res.status(404).json(err));
 });
