@@ -66,45 +66,89 @@ router.get("/:word", (req, res) => {
 // @route   GET /words/find/word
 // @desc    Check the given word from the DB and if not exist update the db with GoogleDict
 // @access  Public
+if (process.env.NODE_ENV === "production") {
+  router.get("/find/:word", (req, res) => {
+    Item.findOne({ word: req.params.word })
+      .then(item => {
+        if (!item) {
+          var word = req.params.word;
+          const getWord = async word => {
+            const incomingWord = await fetch(
+              `https://dict.niweera.gq/wh/${word}`
+            );
+            const dictWord = await incomingWord.json();
+            if (!dictWord.hasOwnProperty("error")) {
+              const newItem = {};
 
-router.get("/find/:word", (req, res) => {
-  Item.findOne({ word: req.params.word })
-    .then(item => {
-      if (!item) {
-        var word = req.params.word;
-        const getWord = async word => {
-          const incomingWord = await fetch(`http://localhost:8080/wh/${word}`);
-          const dictWord = await incomingWord.json();
-          if (!dictWord.hasOwnProperty("error")) {
-            const newItem = {};
+              if (dictWord.word) newItem.word = dictWord.word;
+              if (dictWord.definition) newItem.definition = dictWord.definition;
 
-            if (dictWord.word) newItem.word = dictWord.word;
-            if (dictWord.definition) newItem.definition = dictWord.definition;
+              Item.findOne({ word: dictWord.word }).then(item => {
+                if (item) {
+                  //throw an error
+                  console.log("Error occurred when inserting new word.");
+                } else {
+                  //create new item
+                  new Item(newItem)
+                    .save()
+                    .then(item => console.log(item))
+                    .catch(err => console.log(err));
+                }
+              });
+            } else {
+              console.log("The given word is invalid:", word);
+            }
+            res.status(200).json(dictWord);
+          };
+          getWord(word);
+        } else {
+          res.json(item);
+        }
+      })
+      .catch(err => res.status(404).json(err));
+  });
+} else {
+  router.get("/find/:word", (req, res) => {
+    Item.findOne({ word: req.params.word })
+      .then(item => {
+        if (!item) {
+          var word = req.params.word;
+          const getWord = async word => {
+            const incomingWord = await fetch(
+              `http://localhost:8080/wh/${word}`
+            );
+            const dictWord = await incomingWord.json();
+            if (!dictWord.hasOwnProperty("error")) {
+              const newItem = {};
 
-            Item.findOne({ word: dictWord.word }).then(item => {
-              if (item) {
-                //throw an error
-                console.log("Error occurred when inserting new word.");
-              } else {
-                //create new item
-                new Item(newItem)
-                  .save()
-                  .then(item => console.log(item))
-                  .catch(err => console.log(err));
-              }
-            });
-          } else {
-            console.log("The given word is invalid:", word);
-          }
-          res.status(200).json(dictWord);
-        };
-        getWord(word);
-      } else {
-        res.json(item);
-      }
-    })
-    .catch(err => res.status(404).json(err));
-});
+              if (dictWord.word) newItem.word = dictWord.word;
+              if (dictWord.definition) newItem.definition = dictWord.definition;
+
+              Item.findOne({ word: dictWord.word }).then(item => {
+                if (item) {
+                  //throw an error
+                  console.log("Error occurred when inserting new word.");
+                } else {
+                  //create new item
+                  new Item(newItem)
+                    .save()
+                    .then(item => console.log(item))
+                    .catch(err => console.log(err));
+                }
+              });
+            } else {
+              console.log("The given word is invalid:", word);
+            }
+            res.status(200).json(dictWord);
+          };
+          getWord(word);
+        } else {
+          res.json(item);
+        }
+      })
+      .catch(err => res.status(404).json(err));
+  });
+}
 
 // @route   GET /words
 // @desc    Get all words
