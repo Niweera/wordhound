@@ -1,7 +1,45 @@
 # WordHound
 > WordHound service is a supporting service for WordHunter project which provides custom dictionary caching with database support. More details on WordHunter project as follows.
 
-## WordHunter
+## Getting Started
+
+To view the meaning of a specific word, enter the word at the provided endpoint. The WordCache DB is the store for all the words and definitions. WordHound learns new words everytime it is being used.
+
+Eg. `https://wordhound.niweera.gq/words/hello`, will give you the dictionary definition of **hello** directly from the WordCache DB:
+
+```json
+{
+  "word": "hello",
+  "definition": "used as a greeting or to begin a telephone conversation."
+}
+```
+
+Eg. `https://wordhound.niweera.gq/words/find/hello`, will give you the dictionary definition of **hello** even if the word is not present in the WordCache DB:
+
+```json
+{
+  "word": "hello",
+  "definition": "used as a greeting or to begin a telephone conversation."
+}
+```
+
+### Paths
+
+| Location | Endpoint |
+| :-- | :-- |
+| Root path | `https://wordhound.niweera.gq/`|
+
+
+### HTTP request and query methods
+
+| Method | Endpoint | Query | Description | Examples |
+| :-- | :-- | :-- | :-- | :-- |
+| `GET` | `/words` | `{word}` | Give JSON response with the definitions of the `{word}` directly from the WordCache DB. | [`hello`](https://wordhound.niweera.gq/words/hello) |
+| `GET` | `/words/find` | `{word}` | Use this endpoint if the previous endpoint does not provide any definition. When using this endpoint to get the definition, the WordCache DB learns new words. | [`hello`](https://wordhound.niweera.gq/words/find/hello) |
+
+## Related Projects
+
+### WordHunter
 > WordHunter lets you to find the words for the letters you have when you are playing Scrabble.
 
 The following is the basic architecture of the WordHunter application. (The web application will use the WordHunter-api to get the results according to the letters that the user has given.)
