@@ -25,3 +25,4 @@ yarn-error.log*
 app.yaml
 dispatch.yaml
 /config/keys_dev.js
+app.yaml
