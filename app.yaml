@@ -1,0 +1,2 @@
+service: wordhound
+runtime: nodejs10

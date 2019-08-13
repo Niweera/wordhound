@@ -22,8 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-app.yaml
+app2.yaml
 dispatch.yaml
 /config/keys_dev.js
-app.yaml
+app2.yaml
 package-lock.json
