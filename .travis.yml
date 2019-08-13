@@ -11,7 +11,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_fb95c9318e23_key -iv $encrypted_fb95c9318e23_iv
     -in gae.json.enc -out gae.json -d
 
-# Deploy to Google App Engine
+# Deploy to Google App Engines
 before_deploy:
   - sudo chmod +x ./create_env_file.sh
   - sudo bash ./create_env_file.sh
