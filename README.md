@@ -3,6 +3,7 @@
 [![Known Vulnerabilities](https://snyk.io//test/github/Niweera/wordhound/badge.svg?targetFile=package.json)](https://snyk.io//test/github/Niweera/wordhound?targetFile=package.json)
 ![GitHub issues](https://img.shields.io/github/issues/Niweera/wordhound)
 ![Website](https://img.shields.io/website/https/wordhound.niweera.gq?down_color=lightgrey&down_message=offline&up_color=blue&up_message=online)
+[![Build Status](https://travis-ci.com/Niweera/wordhound.svg?branch=master)](https://travis-ci.com/Niweera/wordhound)
 
 # WordHound
 > WordHound service is a supporting service for WordHunter project which provides custom dictionary caching with database support. More details on WordHunter project as follows.
