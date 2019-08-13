@@ -16,6 +16,7 @@ before_deploy:
   - sudo chmod +x ./create_env_file.sh
   - sudo bash ./create_env_file.sh
   - cat ./.env
+  - cat ./app.yaml
 deploy:
   provider: gae
   keyfile: gae.json
