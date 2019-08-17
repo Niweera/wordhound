@@ -10,6 +10,7 @@ describe("WordHound/words/find", () => {
   /*
    * Test the /GET route
    */
+
   describe("/GET hello", () => {
     it("it should GET the definition of hello", done => {
       chai

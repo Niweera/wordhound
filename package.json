@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "test": "mocha",
-    "mocha": "mocha --timeout 180000"
+    "test": "mocha --timeout 180000"
   },
   "author": "Nipuna Weerasekara",
   "license": "MIT",
