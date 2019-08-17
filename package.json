@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "test": "mocha"
   },
   "author": "Nipuna Weerasekara",
   "license": "MIT",
@@ -13,10 +14,13 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "concurrently": "^4.1.0",
     "express": "^4.17.0",
     "express-async-await": "^1.1.0",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.0",
     "mongoose": "^5.5.9",
     "node-fetch": "^2.6.0",
     "passport": "^0.4.0",
@@ -26,5 +30,13 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niweera/wordhound.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Niweera/wordhound/issues"
+  },
+  "homepage": "https://github.com/Niweera/wordhound#readme"
 }
