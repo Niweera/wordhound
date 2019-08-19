@@ -5,7 +5,7 @@ node_js:
 cache:
   directories:
     - node_modules
-
+script: "true"
 # Decrypt Google API key
 before_install:
   - openssl aes-256-cbc -K $encrypted_fb95c9318e23_key -iv $encrypted_fb95c9318e23_iv
