@@ -7,7 +7,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 //Our parent block
 describe("WordHound/words/find", () => {
-  beforeEach(done => setTimeout(done, 180000));
+  beforeEach(done => setTimeout(done, 120000));
   /*
    * Test the /GET route
    */
