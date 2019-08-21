@@ -5,6 +5,7 @@ const path = require("path");
 var favicon = require("serve-favicon");
 
 const items = require("./routes/api/items");
+const words = require("./routes/api/words");
 const endpoints = require("./routes/api/endpoints");
 
 const app = express();
@@ -35,6 +36,7 @@ mongoose
 
 // Use Routes
 app.use("/words", items);
+app.use("/allwords", words);
 app.use("/", endpoints); //this route must be at the end
 
 const port = process.env.PORT || 5050;
